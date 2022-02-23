@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in produtos %}
+                    <tr>
+                        <td scope="row">{{ i.id }}</td>
+                        <td scope="row">{{ i.nome }}</td>
+                        <td scope="row">{{ i.preco|intcomma }}</td>
+                        <td scope="row">
+                            <a class="btn btn-warning" href="{% url 'upd_produto' i.pk %}">Editar</a>
+                            <a class="btn btn-danger" href="{% url 'del_produto' i.pk %}">Deletar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
